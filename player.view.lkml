@@ -17,10 +17,16 @@ view: player {
     sql: ${TABLE}.Age ;;
   }
 
-  dimension: average_draft_position {
+  dimension: draft_position {
     type: number
     sql: ${TABLE}.AverageDraftPosition ;;
   }
+
+  measure: average_draft_position {
+    type: average
+    sql: ${draft_position} ;;
+  }
+
 
   dimension_group: birth {
     type: time

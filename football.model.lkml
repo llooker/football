@@ -3,17 +3,14 @@ connection: "bigquery_publicdata_standard_sql"
 include: "*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
 
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
+explore: player {
+  join: player_draft_ranking_by_position {
+    sql_on: ${player.player_id} = ${player_draft_ranking_by_position.player_id} ;;
+  }
+}
+
+explore: game {}
+
+explore: team_game {}
+
+explore: defense_game {}
