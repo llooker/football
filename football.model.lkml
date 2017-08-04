@@ -9,6 +9,8 @@ explore: player {
   }
 }
 
+explore: player_season {}
+
 explore: game {}
 
 explore: team_game {}
