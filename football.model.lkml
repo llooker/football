@@ -13,4 +13,12 @@ explore: game {}
 
 explore: team_game {}
 
-explore: defense_game {}
+explore: defense_game {
+  join: defense_game_projection {
+    sql_on:
+      ${defense_game_projection.team_id} = ${defense_game.team_id}
+      AND ${defense_game_projection.week} = ${defense_game.week}
+      AND ${defense_game_projection.season} = ${defense_game.season}
+      AND ${defense_game_projection.season_type} = ${defense_game.season_type} ;;
+  }
+}

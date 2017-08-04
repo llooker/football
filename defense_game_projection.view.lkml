@@ -89,28 +89,61 @@ view: defense_game_projection {
   }
 
   dimension: fantasy_points {
-    type: string
+    type: number
     sql: ${TABLE}.FantasyPoints ;;
   }
 
   dimension: fantasy_points_allowed {
-    type: string
+    type: number
     sql: ${TABLE}.FantasyPointsAllowed ;;
   }
 
   dimension: fantasy_points_draft_kings {
-    type: string
+    type: number
     sql: ${TABLE}.FantasyPointsDraftKings ;;
   }
 
   dimension: fantasy_points_fan_duel {
-    type: string
+    type: number
     sql: ${TABLE}.FantasyPointsFanDuel ;;
   }
 
   dimension: fantasy_points_yahoo {
-    type: string
-    sql: ${TABLE}.FantasyPointsYahoo ;;
+    type: number
+    value_format_name: "decimal_2"
+    sql: CAST(${TABLE}.FantasyPointsYahoo AS FLOAT64) ;;
+  }
+
+  dimension: fantasy_points_tier {
+    type: tier
+    tiers: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    style: integer
+    sql: ${fantasy_points_yahoo} ;;
+  }
+
+  dimension: fantasy_points_tier_wide {
+    type: tier
+    tiers: [4,5,6,7,8,10]
+#     style: integer
+    sql: ${fantasy_points_yahoo} ;;
+  }
+
+  dimension: fantasy_points_yahoo_outperformance {
+    type: number
+    value_format_name: "decimal_2"
+    sql: ${defense_game.fantasy_points_yahoo} - ${fantasy_points_yahoo} ;;
+  }
+
+  dimension: fantasy_points_yahoo_outperformance_tier {
+    type: tier
+    tiers: [-10,-7,-4,-2,0,2,4,7,10]
+    sql: ${fantasy_points_yahoo_outperformance} ;;
+  }
+
+  measure: average_fantasy_points_yahoo {
+    type: average
+    value_format_name: "decimal_2"
+    sql: ${fantasy_points_yahoo} ;;
   }
 
   dimension: field_goal_return_touchdowns {
@@ -347,6 +380,15 @@ view: defense_game_projection {
   dimension: team_id {
     type: number
     sql: ${TABLE}.TeamID ;;
+  }
+
+  dimension: game_key {
+    type: string
+    sql: CONCAT(${team}
+          , " - ", CAST(${season} as STRING)
+          , " - ", CAST(${week} as STRING)
+          , " - ", CAST(${season_type} as STRING)
+          ) ;;
   }
 
   dimension: temperature {

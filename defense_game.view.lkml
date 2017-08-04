@@ -21,20 +21,6 @@ view: defense_game {
     sql: ${TABLE}.BlockedKicks ;;
   }
 
-#   dimension_group: date {
-#     type: time
-#     timeframes: [
-#       raw,
-#       time,
-#       date,
-#       week,
-#       month,
-#       quarter,
-#       year
-#     ]
-#     sql: ${TABLE}.Date ;;
-#   }
-
   dimension_group: date {
     type: time
     timeframes: [
@@ -117,9 +103,9 @@ view: defense_game {
   dimension: fantasy_points_tier {
     type: tier
     tiers: [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
+    style: integer
     sql: ${fantasy_points_yahoo} ;;
   }
-
 
   measure: average_fantasy_points_yahoo {
     type: average
@@ -362,6 +348,15 @@ view: defense_game {
   dimension: team_id {
     type: number
     sql: ${TABLE}.TeamID ;;
+  }
+
+  dimension: game_key {
+    type: string
+    sql: CONCAT(${team}
+          , " - ", CAST(${season} as STRING)
+          , " - ", CAST(${week} as STRING)
+          , " - ", CAST(${season_type} as STRING)
+          ) ;;
   }
 
   dimension: temperature {
