@@ -106,6 +106,7 @@ view: player_season {
     type: average
     value_format_name: decimal_2
     sql: ${fantasy_points_yahoo} ;;
+    html: {{ value }} {{ max_name.value }} ;;
   }
 
   dimension: fantasy_position {
@@ -286,6 +287,11 @@ view: player_season {
   dimension: name {
     type: string
     sql: ${TABLE}.Name ;;
+  }
+
+  measure: max_name {
+    type: string
+    sql: max(${name}) ;;
   }
 
   dimension: number {
