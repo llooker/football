@@ -102,6 +102,12 @@ view: player_season {
     sql: ${TABLE}.FantasyPointsYahoo ;;
   }
 
+  measure: average_fantasy_points_yahoo {
+    type: average
+    value_format_name: decimal_2
+    sql: ${fantasy_points_yahoo} ;;
+  }
+
   dimension: fantasy_position {
     type: string
     sql: ${TABLE}.FantasyPosition ;;
