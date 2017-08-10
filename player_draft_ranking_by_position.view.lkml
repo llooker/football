@@ -1,14 +1,14 @@
 view: player_draft_ranking_by_position {
-  # Or, you could make this view a derived table, like this:
   derived_table: {
     sql:
         SELECT p.PlayerID as player_id
           , p.Name as player_name
           , p.FantasyPosition as player_position
+          , p.Season as season
           , p.AverageDraftPosition as player_adp
-          , RANK() OVER (ORDER BY AverageDraftPosition ASC) AS player_overall_rank
-          , RANK() OVER (PARTITION BY p.FantasyPosition ORDER BY p.AverageDraftPosition ASC) AS player_position_rank
-        FROM `lookerdata.fantasy_football.player` p
+          , RANK() OVER (PARTITION BY p.Season ORDER BY AverageDraftPosition ASC) AS player_overall_rank
+          , RANK() OVER (PARTITION BY p.Season, p.FantasyPosition ORDER BY p.AverageDraftPosition ASC) AS player_position_rank
+        FROM `lookerdata.fantasy_football.player_season_projection` p
         WHERE AverageDraftPosition is not NULL
       ;;
   }
@@ -27,6 +27,11 @@ view: player_draft_ranking_by_position {
   dimension: player_position {
     type: string
     sql: ${TABLE}.player_position ;;
+  }
+
+  dimension: season {
+    type: number
+    sql: ${TABLE}.season ;;
   }
 
   dimension: player_adp {

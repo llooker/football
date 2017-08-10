@@ -13,12 +13,24 @@ explore: player {
 explore: player_game_all {}
 
 explore: player_season {
+  always_filter: {
+    filters: {
+      field: season_type
+      value: "1"
+    }
+  }
   join: player_season_projection {
     relationship: one_to_one
     sql_on:
       ${player_season.player_id} = ${player_season_projection.player_id}
       AND ${player_season.season} = ${player_season_projection.season}
       AND ${player_season.season_type} = ${player_season_projection.season_type};;
+  }
+  join: player_draft_ranking_by_position {
+    relationship: one_to_one
+    sql_on:
+    ${player_season.player_id} = ${player_draft_ranking_by_position.player_id}
+      AND ${player_season.season} = ${player_draft_ranking_by_position.season};;
   }
 }
 
