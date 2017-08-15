@@ -383,6 +383,15 @@ view: player_game_all {
   dimension: name {
     type: string
     sql: ${TABLE}.Name ;;
+    link: {
+      label: "Pro Football Reference"
+      url: "{{name_url.value}}"
+    }
+  }
+
+  dimension: name_url {
+    type: string
+    sql: CONCAT("http://www.google.com/search?q=",replace(${name}," ","+"),"+pro+football+reference&btnI") ;;
   }
 
   dimension: number {

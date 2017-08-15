@@ -41,6 +41,13 @@ view: player_game_ranking {
       type: string
     }
 
+    measure: player_name {
+      type: string
+      sql: max(${name});;
+      html: {{ value }} ({{ sum_fantasy_points_yahoo._formatted_value }});;
+      required_fields: [sum_fantasy_points_yahoo]
+    }
+
     dimension: player_id {
       type: number
     }
@@ -53,6 +60,13 @@ view: player_game_ranking {
       type: number
       value_format_name: decimal_2
     }
+
+  measure: sum_fantasy_points_yahoo {
+    type: sum
+    value_format_name: decimal_2
+    sql: ${fantasy_points_yahoo} ;;
+  }
+
 
     dimension: player_overall_rank {
       type: number
