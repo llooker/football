@@ -239,6 +239,12 @@ view: player_game_all {
     sql: ${TABLE}.FumblesLost ;;
   }
 
+  measure: sum_fumbles_lost {
+    type: sum
+    sql: ${fumbles_lost} ;;
+  }
+
+
   dimension: fumbles_out_of_bounds {
     type: number
     sql: ${TABLE}.FumblesOutOfBounds ;;
