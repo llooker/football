@@ -384,8 +384,8 @@ view: player_game_all {
     type: string
     sql: ${TABLE}.Name ;;
     link: {
-      label: "Pro Football Reference"
-      url: "{{name_url.value}}"
+      label: "More Stats on Pro Football Reference"
+      url: "{{name_url._value}}"
     }
   }
 

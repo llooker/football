@@ -44,7 +44,7 @@ view: player_game_ranking {
     measure: player_name {
       type: string
       sql: max(${name});;
-      html: {{ value }} ({{ sum_fantasy_points_yahoo._formatted_value }});;
+      html: {{ value }} ({{ sum_fantasy_points_yahoo._rendered_value }});;
       required_fields: [sum_fantasy_points_yahoo]
     }
 
