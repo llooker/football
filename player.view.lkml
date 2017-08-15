@@ -24,6 +24,7 @@ view: player {
 
   measure: average_draft_position {
     type: average
+    value_format_name: decimal_2
     sql: ${draft_position} ;;
   }
 

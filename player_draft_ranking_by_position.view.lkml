@@ -41,6 +41,7 @@ view: player_draft_ranking_by_position {
 
   measure: average_player_adp {
     type: average
+    value_format_name: decimal_2
     sql: ${player_adp} ;;
   }
 
