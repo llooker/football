@@ -484,7 +484,7 @@ view: player_game_all {
     sql: ${TABLE}.PassingYardsN ;;
   }
 
-  measure: passing_yards_n {
+  measure: sum_passing_yards {
     type: sum
     sql: ${passing_yards} ;;
   }
@@ -685,7 +685,7 @@ view: player_game_all {
   }
 
   measure: sum_rushing_attempts {
-    type: number
+    type: sum
     sql: ${rushing_attempts} ;;
   }
 
@@ -700,7 +700,7 @@ view: player_game_all {
   }
 
   measure: sum_rushing_touchdowns {
-    type: number
+    type: sum
     sql: ${rushing_touchdowns} ;;
   }
 
@@ -710,7 +710,7 @@ view: player_game_all {
   }
 
   measure: sum_rushing_yards {
-    type: number
+    type: sum
     sql: ${rushing_yards} ;;
   }
 
