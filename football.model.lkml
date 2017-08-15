@@ -12,6 +12,8 @@ explore: player {
 
 explore: player_game_all {}
 
+explore: player_game_ranking {}
+
 explore: player_season {
   always_filter: {
     filters: {

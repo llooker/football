@@ -143,6 +143,12 @@ view: player_game_all {
     sql: ${TABLE}.FantasyPointsYahoo ;;
   }
 
+  measure: sum_fantasy_points_yahoo {
+    type: sum
+    value_format_name: decimal_2
+    sql: ${fantasy_points_yahoo} ;;
+  }
+
   dimension: fantasy_position {
     type: string
     sql: ${TABLE}.FantasyPosition ;;
@@ -438,6 +444,11 @@ view: player_game_all {
     sql: ${TABLE}.PassingInterceptions ;;
   }
 
+  measure: sum_passing_interceptions {
+    type: sum
+    sql: ${passing_interceptions} ;;
+  }
+
   dimension: passing_long {
     type: number
     sql: ${TABLE}.PassingLong ;;
@@ -463,9 +474,19 @@ view: player_game_all {
     sql: ${TABLE}.PassingTouchdowns ;;
   }
 
-  dimension: passing_yards_n {
+  measure: sum_passing_touchdowns {
+    type: sum
+    sql: ${passing_touchdowns} ;;
+  }
+
+  dimension: passing_yards {
     type: number
     sql: ${TABLE}.PassingYardsN ;;
+  }
+
+  measure: passing_yards_n {
+    type: sum
+    sql: ${passing_yards} ;;
   }
 
   dimension: passing_yards_per_attempt {
@@ -553,6 +574,11 @@ view: player_game_all {
     sql: ${TABLE}.PuntReturnYards ;;
   }
 
+  measure: sum_punt_return_yards {
+    type: sum
+    sql: ${punt_return_yards} ;;
+  }
+
   dimension: punt_return_yards_per_attempt {
     type: number
     sql: ${TABLE}.PuntReturnYardsPerAttempt ;;
@@ -561,6 +587,11 @@ view: player_game_all {
   dimension: punt_returns {
     type: number
     sql: ${TABLE}.PuntReturns ;;
+  }
+
+  measure: sum_punt_returns {
+    type: sum
+    sql: ${punt_returns} ;;
   }
 
   dimension: punt_touchbacks {
@@ -598,14 +629,29 @@ view: player_game_all {
     sql: ${TABLE}.ReceivingTargets ;;
   }
 
+  measure: sum_receiving_targets {
+    type: sum
+    sql: ${receiving_targets} ;;
+  }
+
   dimension: receiving_touchdowns {
     type: number
     sql: ${TABLE}.ReceivingTouchdowns ;;
   }
 
+  measure: sum_receiving_touchdowns {
+    type: sum
+    sql: ${receiving_touchdowns} ;;
+  }
+
   dimension: receiving_yards {
     type: number
     sql: ${TABLE}.ReceivingYards ;;
+  }
+
+  measure: sum_receiving_yards {
+    type: sum
+    sql: ${receiving_yards} ;;
   }
 
   dimension: receiving_yards_per_reception {
@@ -628,9 +674,19 @@ view: player_game_all {
     sql: ${TABLE}.Receptions ;;
   }
 
+  measure: sum_receptions {
+    type: sum
+    sql: ${receptions} ;;
+  }
+
   dimension: rushing_attempts {
     type: number
     sql: ${TABLE}.RushingAttempts ;;
+  }
+
+  measure: sum_rushing_attempts {
+    type: number
+    sql: ${rushing_attempts} ;;
   }
 
   dimension: rushing_long {
@@ -643,9 +699,19 @@ view: player_game_all {
     sql: ${TABLE}.RushingTouchdowns ;;
   }
 
+  measure: sum_rushing_touchdowns {
+    type: number
+    sql: ${rushing_touchdowns} ;;
+  }
+
   dimension: rushing_yards {
     type: number
     sql: ${TABLE}.RushingYards ;;
+  }
+
+  measure: sum_rushing_yards {
+    type: number
+    sql: ${rushing_yards} ;;
   }
 
   dimension: rushing_yards_per_attempt {
@@ -768,6 +834,11 @@ view: player_game_all {
     sql: ${TABLE}.Touchdowns ;;
   }
 
+  measure: sum_touchdowns {
+    type: sum
+    sql: ${touchdowns} ;;
+  }
+
   dimension: two_point_conversion_passes {
     type: number
     sql: ${TABLE}.TwoPointConversionPasses ;;
@@ -794,7 +865,7 @@ view: player_game_all {
   }
 
   dimension: week {
-    type: string
+    type: number
     sql: ${TABLE}.Week ;;
   }
 
