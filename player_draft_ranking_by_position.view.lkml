@@ -9,7 +9,7 @@ view: player_draft_ranking_by_position {
           , RANK() OVER (PARTITION BY p.Season ORDER BY AverageDraftPosition ASC) AS player_overall_rank
           , RANK() OVER (PARTITION BY p.Season, p.FantasyPosition ORDER BY p.AverageDraftPosition ASC) AS player_position_rank
         FROM `lookerdata.fantasy_football.player_season_projection` p
-        WHERE AverageDraftPosition is not NULL
+        WHERE AverageDraftPosition is not NULL and SeasonType = 1
       ;;
   }
 
@@ -22,6 +22,11 @@ view: player_draft_ranking_by_position {
   dimension: player_name {
     type: string
     sql: ${TABLE}.player_name ;;
+  }
+
+  measure: max_player_name {
+    type: string
+    sql: max(${player_name}) ;;
   }
 
   dimension: player_position {
@@ -43,6 +48,7 @@ view: player_draft_ranking_by_position {
     type: average
     value_format_name: decimal_2
     sql: ${player_adp} ;;
+    html: {{rendered_value}} ({{max_player_name._value}}) ;;
   }
 
   dimension: player_overall_rank {

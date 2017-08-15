@@ -25,7 +25,8 @@ view: player {
   measure: average_draft_position {
     type: average
     value_format_name: decimal_2
-    sql: ${draft_position} ;;
+    sql: ${draft_position};;
+    html: {{rendered_value}} ({{ max_name._value }}) ;;
   }
 
 
@@ -235,6 +236,11 @@ view: player {
   dimension: name {
     type: string
     sql: ${TABLE}.Name ;;
+  }
+
+  measure: max_name {
+    type: string
+    sql: max(${name}) ;;
   }
 
   dimension: number {
