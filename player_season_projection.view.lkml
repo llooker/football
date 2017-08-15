@@ -102,6 +102,13 @@ view: player_season_projection {
     sql: ${TABLE}.FantasyPointsYahoo ;;
   }
 
+  dimension: outperformance {
+    type: number
+    value_format_name: decimal_2
+    sql: ${player_season.fantasy_points_yahoo} - ${player_season_projection.fantasy_points_yahoo};;
+    html: {{rendered_value}} ({{player_season.max_name._value}}) ;;
+  }
+
   measure: average_fantasy_points_yahoo {
     type: sum
     value_format_name: decimal_2
