@@ -391,6 +391,7 @@ view: player_game_all {
 
   dimension: name_url {
     type: string
+    hidden: yes
     sql: CONCAT("http://www.google.com/search?q=",replace(${name}," ","+"),"+pro+football+reference&btnI") ;;
   }
 
