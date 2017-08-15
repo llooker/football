@@ -39,6 +39,11 @@ view: player_draft_ranking_by_position {
     sql: ${TABLE}.player_adp ;;
   }
 
+  measure: average_player_adp {
+    type: average
+    sql: ${player_adp} ;;
+  }
+
   dimension: player_overall_rank {
     type: number
     sql: ${TABLE}.player_overall_rank ;;

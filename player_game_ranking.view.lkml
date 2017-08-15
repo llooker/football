@@ -46,6 +46,22 @@ view: player_game_ranking {
       sql: max(${name});;
       html: {{ value }} ({{ sum_fantasy_points_yahoo._rendered_value }});;
       required_fields: [sum_fantasy_points_yahoo]
+      link: {
+        label: "More on Pro Football Reference"
+        url: "{{player_name_url._value}}"
+        }
+    }
+
+  dimension: player_name_url {
+    type: string
+    hidden: yes
+    sql: CONCAT(
+            "http://www.google.com/search?q="
+            , replace(${player_name}," ","+")
+            , "+site:pro-football-reference.com"
+            , "+inurl:gamelog"
+            , "+intitle:career"
+            ,"&btnI") ;;
     }
 
     dimension: player_id {
