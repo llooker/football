@@ -106,7 +106,7 @@ view: player_season {
     type: average
     value_format_name: decimal_2
     sql: ${fantasy_points_yahoo} ;;
-    html: {{ value }} {{ max_name.value }} ;;
+    html: {{ {{rendered_value}} ({{ max_name._value }}) ;;
   }
 
   dimension: fantasy_position {
