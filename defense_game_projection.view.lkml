@@ -27,6 +27,7 @@ view: defense_game_projection {
       raw,
       time,
       date,
+      day_of_week,
       week,
       month,
       quarter,
@@ -61,6 +62,14 @@ view: defense_game_projection {
       year
     ]
     sql: ${TABLE}.Day ;;
+  }
+
+  dimension_group: datetime {
+    type: time
+    timeframes: [
+      hour_of_day
+    ]
+    sql: ${TABLE}.DateTime ;;
   }
 
   dimension: defensive_touchdowns {
@@ -138,6 +147,18 @@ view: defense_game_projection {
     type: number
     value_format_name: "decimal_2"
     sql: ${defense_game.fantasy_points_yahoo} - ${fantasy_points_yahoo} ;;
+  }
+
+  measure: average_fantasy_points_yahoo_outperformance {
+    type: average
+    value_format_name: "decimal_2"
+    sql: ${fantasy_points_yahoo_outperformance} ;;
+  }
+
+  measure: stdev_fantasy_points_yahoo_outperformance {
+    type: number
+    value_format_name: "decimal_2"
+    sql: STDDEV_SAMP(${fantasy_points_yahoo_outperformance}) ;;
   }
 
   dimension: fantasy_points_yahoo_outperformance_floor {
