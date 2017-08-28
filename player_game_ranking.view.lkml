@@ -34,7 +34,7 @@ view: player_game_ranking {
       }
 
     dimension: season {
-      type: number
+      type: string
     }
 
     dimension: name {
