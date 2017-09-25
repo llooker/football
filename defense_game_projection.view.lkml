@@ -72,6 +72,11 @@ view: defense_game_projection {
     sql: ${TABLE}.DateTime ;;
   }
 
+  dimension: is_primetime {
+    type:  yesno
+    sql:  ${datetime_hour_of_day} = 8;;
+  }
+
   dimension: defensive_touchdowns {
     type: number
     sql: ${TABLE}.DefensiveTouchdowns ;;
