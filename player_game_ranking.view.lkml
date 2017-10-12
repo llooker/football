@@ -52,7 +52,7 @@ view: player_game_ranking {
         }
     }
 
-  dimension: player_name_url {
+  measure: player_name_url {
     type: string
     hidden: yes
     sql: CONCAT(
